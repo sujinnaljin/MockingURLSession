@@ -6,8 +6,9 @@
 //
 
 import Foundation
+@testable import NetworkMock
 
-class MockURLSessionDataTask: URLSessionDataTask {
+class MockURLSessionDataTask: URLSessionDataTaskProtocol {
     
     private let resumeHandler: () -> Void
     
@@ -16,8 +17,7 @@ class MockURLSessionDataTask: URLSessionDataTask {
     }
     
     // resume 해도 실제 네트워크 요청들이 일어나면 안됨. 그냥 단순히 completionHandler 호출 용
-    override func resume() {
+    func resume() {
         resumeHandler()
     }
 }
-

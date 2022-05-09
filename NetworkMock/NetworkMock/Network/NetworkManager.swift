@@ -38,7 +38,7 @@ final class NetworkManager {
             return
         }
         
-        let dataTask: URLSessionDataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
+        let dataTask: URLSessionDataTaskProtocol = session.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
                 return

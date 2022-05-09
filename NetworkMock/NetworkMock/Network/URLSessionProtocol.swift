@@ -7,8 +7,14 @@
 
 import Foundation
 
+// Protocol for MOCK/Real
 protocol URLSessionProtocol {
-    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol
 }
 
-extension URLSession: URLSessionProtocol { }
+//MARK: Conform the protocol
+extension URLSession: URLSessionProtocol {
+    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol {
+        return dataTask(with: url, completionHandler: completionHandler) as URLSessionDataTask
+    }
+}
